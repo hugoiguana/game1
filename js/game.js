@@ -1,6 +1,7 @@
 
 var hero;
 var animation;
+var keyboard;
 
 function startGame() {
 
@@ -9,12 +10,31 @@ function startGame() {
     this.canvas.height = 500;
     this.contextCanvas = this.canvas.getContext("2d"); 
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);   
+    
 
-    animation = new Animation(contextCanvas);
-    hero = new Heroi(10, 120, 640, 470, "img/sprite_sheet_heroi.png");
+    keyboard = new Keyboard(this.document);
+    animation = new Animation(contextCanvas, keyboard);
+    hero = new Heroi(10, 120, 640, 470, "img/sprite_sheet_heroi.png", keyboard);
+
+    keyboard.addKeyTrigger(RIGHT_ARROW, function() {
+        hero.update();
+    });
+
+    keyboard.addKeyTrigger(LEFT_ARROW, function() {
+        hero.update();
+    });
+    
+    keyboard.addKeyTrigger(UP_ARROW, function() {
+        hero.update();
+    });
+    
+    keyboard.addKeyTrigger(DOWN_ARROW, function() {
+        hero.update();
+    });    
 
     animation.addSprit(hero);
     animation.start();
+
 }
 
 

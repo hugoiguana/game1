@@ -1,6 +1,6 @@
 
 
-function Heroi(x, y, width, height, imgSrc) {
+function Heroi(x, y, width, height, imgSrc, keyboard) {
     
     this.x = 100;
     this.y = 100;
@@ -9,6 +9,7 @@ function Heroi(x, y, width, height, imgSrc) {
     this.image = new Image();
     this.image.src = imgSrc;
     this.positions = [];
+    this.keyboard = keyboard;
 
     this.positions['stoped'] = {x:8, y:18};
     this.positions['wr1'] = {x:19, y:116}; //walk_rigth1
@@ -18,15 +19,16 @@ function Heroi(x, y, width, height, imgSrc) {
     this.positions['wr5'] = {x:342, y:116};
     this.positions['wr6'] = {x:417, y:116};
 
-    //this.widthCut = widthCut;
-    //this.heightCut = heightCut;
-    //this.xCut = xCut;
-    //this.yCut = yCut;
 }
 
 Heroi.prototype = {
     update : function() {
-        console.log('update');
+        //console.log('update');
+        console.log(this.keyboard.key_trigger_list[RIGHT_ARROW].isPress);
+        if (this.keyboard.key_trigger_list[RIGHT_ARROW].isPress)
+            this.x += 1;
+        if (this.keyboard.key_trigger_list[LEFT_ARROW].isPress)
+            this.x += -1;            
     },
     draw : function(contextCanvas) {
         

@@ -1,8 +1,9 @@
 
-function Animation(contextCanvas) {
+function Animation(contextCanvas, keyboard) {
     this.contextCanvas = contextCanvas;
     this.sprites = [];
     this.isOn = false;
+    this.keyboard = keyboard;
 }
 
 Animation.prototype = {
@@ -16,11 +17,12 @@ Animation.prototype = {
     nextFrame : function() {
         if (!this.isOn) return; 
         this.cleanWindow();
+        for (var i in this.sprites) {            
+            this.sprites[i].update(this.keyboard);
+        }
         for (var i in this.sprites) 
-            this.sprites[i].update();
-        for (var i in this.sprites) 
-            this.sprites[i].draw(this.contextCanvas); 
-        // Chamamos o próximo ciclo
+            this.sprites[i].draw(this.contextCanvas);         
+            
         var animation = this;
         requestAnimationFrame(function() {
             animation.nextFrame();
