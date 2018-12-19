@@ -14,7 +14,7 @@ function startGame() {
 
     keyboard = new Keyboard(this.document);
     animation = new Animation(contextCanvas, keyboard);
-    hero = new Heroi(10, 120, 640, 470, "img/sprite_sheet_heroi.png", keyboard);
+    hero = new Hero(10, 120, 640, 470, "img/sprite_sheet_heroi.png", keyboard);
 
     keyboard.addKeyTrigger(RIGHT_ARROW, function() {
         hero.update();
